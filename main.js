@@ -1,4 +1,7 @@
 const submitBtn=document.querySelector('.submitForm')
+const result=document.querySelector('.result')
+const userval=document.querySelector('.uservalue')
+const compval=document.querySelector('.compvalue')
 let turns=0
 const input=document.querySelector('#input')
 let userInput=null
@@ -9,15 +12,21 @@ input.addEventListener('change',(e)=>{
 submitBtn.addEventListener('submit',(e)=>{
     e.preventDefault()
     const computerNumber=Math.floor(Math.random()*100)
-  
+    userval.innerText=userInput
+    compval.innerText=computerNumber
     console.log(computerNumber,userInput)
     if(computerNumber===userInput){
         console.log('exact predection')
-    }else if(Math.abs(computerNumber+5-userInput)<=5||Math.abs(computerNumber-5)<=5){
+        result.innerText='🥳 Oh ! Congratulations your predection is correct'
        
-        console.log('near predection')
+    }else if(Math.abs(computerNumber+5-userInput)<=5||Math.abs(computerNumber-5)<=5){
+        result.innerText=' 😎 Oh ! predection is so near '
+       
     }else{
         console.log('far predection')
+        result.innerText=' 😔 Oh ! predection is so far '
+       
+
     }
     input.value=''
 })
